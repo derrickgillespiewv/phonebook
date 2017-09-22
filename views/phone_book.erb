@@ -47,8 +47,8 @@
         <tr class = "header">
         
         <h3> Phone Book </h3>
-        <input type = "text" id = "search_bar_input" onclick = "search_function()" placeholder = "Search your name">
-        <% phonebook.each do |value| %>
+        <input type = "text" id = "search_bar_input" onkeyup = "search_function()" placeholder = "Search your name">
+                <% phonebook.each do |value| %>
                 <td> <%= value['first_name'] %> </td>
                 <td> <%= value['last_name'] %> </td>
                 <td> <%= value['city'] %> </td>
@@ -68,7 +68,7 @@
             
             user_given_search_input = document.getElementById("search_bar_input")
             uppercase_filter = user_given_search_input.value.toUpperCase();
-            table = document.getElementById("search_results_table")
+            table = document.getElementById("book_table")
             table_row = table.getElementsByTagName("tr")
             for (index_position = 0; index_position < table_row.length; index_position++) {
                 table_cell = table_row[index_position].getElementsByTagName("td")[0];
