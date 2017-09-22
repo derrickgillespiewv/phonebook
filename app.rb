@@ -47,12 +47,14 @@ erb :phone_out, :locals => {:first_name=>first_name, :last_name=>last_name, :cit
 	
 end
 
-post '/phone_out'
-redirect '/phone_book?='
-
+post '/phone_out' do
+	redirect '/phone_book?='
 end
 
-
+get '/phone_book' do
+	 phonebook = db.exec("Select * From phonebook")
+    erb :phone_book, locals: {phonebook: phonebook}
+end 
 # get '/' do
 # erb :enter_isbn
 # end 
