@@ -55,6 +55,15 @@ get '/phone_book' do
 	 phonebook = db.exec("Select * From phonebook")
     erb :phone_book, locals: {phonebook: phonebook}
 end 
+
+
+post '/delete_table_row' do
+    deleted = params[:user_deleting_data]    
+    db.exec("DELETE FROM phonebook WHERE phone_number = '#{deleted}'");
+    redirect '/phone_book?='
+end
+
+
 # get '/' do
 # erb :enter_isbn
 # end 
