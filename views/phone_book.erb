@@ -32,21 +32,55 @@
     <li><a href='#'>Contact</a></li>
   </ul>
   </div>
-    
+<div id = "book">  
 <table id = "book_table">
+
+    
+        <tr class = "header">
+                <th style = "width: 10%;"> First Name </th>
+                <th style = "width: 10%;"> Last Name </th>
+                <th style = "width: 10%;"> City </th>
+                <th style = "width: 10%;"> Street Address </th>
+                <th style = "width: 10%;"> Zip Code </th>
+                <th style = "width: 10%;"> Phone Number </th>
+        </tr>
         <tr class = "header">
         
         <h3> Phone Book </h3>
+        <input type = "text" id = "search_bar_input" onclick = "search_function()" placeholder = "Search your name">
         <% phonebook.each do |value| %>
                 <td> <%= value['first_name'] %> </td>
                 <td> <%= value['last_name'] %> </td>
                 <td> <%= value['city'] %> </td>
                 <td> <%= value['street'] %> </td>
-                <td> <%= value['zip'] %> </td>
+                <td> <%= value['zip_code'] %> </td>
                 <td> <%= value['phone_number'] %> </td>
             </tr>
             <% end %>
-</table>
 
+</table>
+<a href="/enter_phone"><button type="button">Enter Another</button></a>
+</div>
 </body>
+    <script>
+        function search_function() {
+            var user_given_search_input, uppercase_filter, table, table_row, table_cell, index_position;
+            
+            user_given_search_input = document.getElementById("search_bar_input")
+            uppercase_filter = user_given_search_input.value.toUpperCase();
+            table = document.getElementById("search_results_table")
+            table_row = table.getElementsByTagName("tr")
+            for (index_position = 0; index_position < table_row.length; index_position++) {
+                table_cell = table_row[index_position].getElementsByTagName("td")[0];
+                if (table_cell) {
+                    if (table_cell.innerHTML.toUpperCase().indexOf(uppercase_filter) > -1) {
+                        table_row[index_position].style.display = "";
+                    }
+                    else {
+                        table_row[index_position].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 </html>
