@@ -450,7 +450,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk (~> 3)
-  pg
+  pg (~> 0.21.0)
   sinatra (~> 2.0.0)
 
 RUBY VERSION
