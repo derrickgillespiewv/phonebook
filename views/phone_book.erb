@@ -47,8 +47,11 @@
         <tr class = "header">
         
         <h3> Phone Book </h3>
+    
         <input type = "text" id = "search_bar_input" onkeyup = "search_function()" placeholder = "Search your name">
+            
                 <% phonebook.each do |value| %>
+            <tr>
                 <td> <%= value['first_name'] %> </td>
                 <td> <%= value['last_name'] %> </td>
                 <td> <%= value['city'] %> </td>

@@ -99,3 +99,13 @@ end
 # #     <p id = "demo"></p>
 # #     <br>
 
+    # <form>
+    #         <select name = 'new_table_cell'>
+    #             <option value=0>First Name</option>
+    #             <option value=1>Last Name</option>
+    #             <option value=2>City</option>
+    #             <option value=3>Street Address</option>
+    #             <option value=4>Zip Code</option>
+    #             <option value=5>Phone Number</option>
+    #         </select>
+    #     </form>
