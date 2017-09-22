@@ -57,8 +57,8 @@ get '/phone_book' do
 end 
 
 
-post '/delete_table_row' do
-    deleted = params[:user_deleting_data]    
+post '/delete' do
+    deleted = params[:user_delete]    
     db.exec("DELETE FROM phonebook WHERE phone_number = '#{deleted}'");
     redirect '/phone_book?='
 end
