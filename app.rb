@@ -1,7 +1,7 @@
 require "sinatra"
 # require_relative "isbn.rb"
 require 'pg'
-require 'bcrypt'
+
 load './local_env.rb' if File.exist?('./local_env.rb')
 
 
