@@ -67,36 +67,36 @@ post '/phone_book' do
 end 
 
 post '/update' do
-	username = params[:user_name]
-	password = params[:pass_word]
+	username = params[:user_update]
+	password = params[:pass_update]
     new_entry = params[:new_entry]
     old_entry = params[:old_entry]
 
     selection = params[:update_choice]
-
+    print selection
 	correct_user = db.exec("SELECT * FROM login_table WHERE username = '#{username}'");
 	correct_name = correct_user[0]
 	correct_name = correct_name.values
-	p correct_name
+	print correct_name
 	if 
 	correct_name[0] = username && correct_name[1] = password	
     	case selection
-        when 'new_first_name'
+        when 'new_first'
             db.exec("UPDATE phonebook SET first_name = '#{new_entry}' WHERE first_name = '#{old_entry}'");
-        when 'new_last_name'
+        when 'new_last'
             db.exec("UPDATE phonebook SET last_name = '#{new_entry}' WHERE last_name = '#{old_entry}'");
-        when 'new_street_address_name'
-        	  db.exec("UPDATE phonebook SET city = '#{new_entry}' WHERE city = '#{old_entry}'");
-        when 'new_state'
-            db.exec("UPDATE phonebook SET street = '#{new_entry}' WHERE street = '#{old_entry}'");
         when 'new_city'
+        	  db.exec("UPDATE phonebook SET city = '#{new_entry}' WHERE city = '#{old_entry}'");
+        when 'new_street'
+            db.exec("UPDATE phonebook SET street = '#{new_entry}' WHERE street = '#{old_entry}'");
+        when 'new_zip'
             db.exec("UPDATE phonebook SET zip_code = '#{new_entry}' WHERE zip_code = '#{old_entry}'");
-        when 'new_phone_number'
+        when 'new_phone'
             db.exec("UPDATE phonebook SET phone_number = '#{new_entry}' WHERE phone_number = '#{old_entry}'");
     	redirect '/phone_book?='
     end
 	else
- redirect '/phone_book?='	
+	redirect '/phone_book?='
 end
 end
 
