@@ -66,6 +66,9 @@ post '/phone_book' do
 	redirect '/phone_book?='
 end 
 
+post '/update'
+
+
 post '/delete' do
     deleted = params[:user_delete]    
     username = params[:user_name]
@@ -84,8 +87,10 @@ end
 username = "Bobman"
 # password = "smith"
 # confirm_user = db.exec("SELECT * FROM login_table WHERE username = '#{username}' AND password = '#{password}'");
-correct_user = db.exec("SELECT * FROM login_table WHERE username = '#{username}'")
+correct_user = db.exec("SELECT * FROM login_table WHERE username = '#{username}'");
+correct_user
 p correct_user
+
 # get '/' do
 # erb :enter_isbn
 # end 
