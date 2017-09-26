@@ -69,9 +69,27 @@
         <input type = "password" name = "pass_word" placeholder="Type password to confirm"><br>
         <input type = "submit" value = "Delete Entry">
     </form>
+
+    <br>
+    <br>
+
     <form> 
-    <form action = '/update' method = 'post'> Click to Update your Info <br>
-    <input type = "submit" value = "Update Info">
+    <form action = '/update' method = 'post'> Select what to Update <br>
+      <select name = 'update_choice'>
+            <option value = 'new_first_name'> First Name </option>
+            <option value = 'new_last_name'> Last Name </option>
+            <option value = 'new_city'> City </option>
+            <option value = 'new_street_address_name'> Street </option>
+            <option value = 'new_zip'> Zip </option>
+            <option value = 'new_phone_number'> Phone Number </option>
+        </select>
+     <br>
+        <input type = "text" name = "old_entry" placeholder = "Enter old information"> <br>
+        <input type = "text" name = "new_entry" placeholder = "Enter updated information"> <br>
+        <input type = "text" name = "user_name" placeholder = "Type your username"><br>
+        <input type = "password" name = "pass_word" placeholder ="Type password to confirm"><br>
+
+        <input type = "submit" value = "Update Info">
     </form>
 </div>
 
