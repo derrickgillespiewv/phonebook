@@ -32,7 +32,13 @@ post '/enter_phone' do
 	street = params[:street]
 	zip = params[:zip]
 	phone = params[:phone]
+
+	username = params[:user_name]
+	password = params[:pass_word]
+
 	db.exec("INSERT INTO phonebook(first_name, last_name, city, street, zip_code, phone_number) VALUES('#{first_name}', '#{last_name}', '#{city}', '#{street}', '#{zip}', '#{phone}')");
+
+	db.exec("INSERT INTO login_table(username, password, phone_number) VALUES('#{username}', '#{password}', '#{phone}')");
 redirect '/phone_out?first_name=' + first_name.to_s + '&last_name=' + last_name.to_s + '&city=' + city.to_s + '&street=' + street.to_s + '&zip=' + zip.to_s + '&phone=' + phone.to_s  
 end 
 
@@ -56,14 +62,30 @@ get '/phone_book' do
     erb :phone_book, locals: {phonebook: phonebook}
 end 
 
+post '/phone_book' do 
+	redirect '/phone_book?='
+end 
 
 post '/delete' do
     deleted = params[:user_delete]    
-    db.exec("DELETE FROM phonebook WHERE phone_number = '#{deleted}'");
+    username = params[:user_name]
+	password = params[:pass_word]
+	correct_user = db.exec("SELECT * FROM login_table WHERE username = '#{username}'")
+	correct_password = db.exec("SELECT * FROM login_table WHERE password = '#{password}'")
+  	confirm_user = db.exec("SELECT * FROM login_table WHERE username = '#{username}' AND password = '#{password}'");
+  	puts confirm_user 
+
+    # login_data = correct_login.values.flatten
+    
+    # if login_data[0] == checked_username && login_data[1] == checked_password
+    # db.exec("DELETE FROM phonebook WHERE phone_number = '#{deleted}'");
     redirect '/phone_book?='
 end
-
-
+username = "Bobman"
+# password = "smith"
+# confirm_user = db.exec("SELECT * FROM login_table WHERE username = '#{username}' AND password = '#{password}'");
+correct_user = db.exec("SELECT * FROM login_table WHERE username = '#{username}'")
+p correct_user
 # get '/' do
 # erb :enter_isbn
 # end 

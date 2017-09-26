@@ -36,14 +36,16 @@
 
 
 <div id = "book">  
-<p>Enter your info in the Phonebook.</p>
+<p>Enter your info to sign up for Phonebook.</p>
     <form method = "post" action = "/enter_phone">
-    <input type="text" placeholder="First Name" name="first_name"><br>
-    <input type="text" placeholder="Last Name" name="last_name"><br>
-    <input type="text" placeholder="City" name="city"><br>
-    <input type="text" placeholder="Street" name="street"><br>
-    <input type="text" placeholder="Zip Code" name="zip"><br>
-    <input type="text" placeholder="Phone Number" name="phone"><br>
+    <input type="text" placeholder="User Name" name="user_name" required ><br>
+    <input type="password" placeholder="Password" name="pass_word" required> <br>
+    <input type="text" placeholder="First Name" name="first_name" required ><br>
+    <input type="text" placeholder="Last Name" name="last_name" required><br>
+    <input type="text" placeholder="City" name="city" required ><br>
+    <input type="text" placeholder="Street" name="street" required ><br>
+    <input type="num" placeholder="Zip Code" min="1" max="5" name="zip" required=""><br>
+    <input type="tel" placeholder="Phone Number" name="phone" required=""><br>
 
     <br>
     <input type = "submit" value = "Add to Book">
