@@ -1,6 +1,7 @@
 require "sinatra"
 # require_relative "isbn.rb"
 require 'pg'
+require 'bcrypt'
 load './local_env.rb' if File.exist?('./local_env.rb')
 
 
@@ -71,15 +72,18 @@ post '/update' do
 	password = params[:pass_update]
     new_entry = params[:new_entry]
     old_entry = params[:old_entry]
-
+    p "#{username}, is user #{password}, is pass, #{old_entry} is old, #{new_entry} is new"
     selection = params[:update_choice]
+
     print selection
+    print "message"
 	correct_user = db.exec("SELECT * FROM login_table WHERE username = '#{username}'");
 	correct_name = correct_user[0]
 	correct_name = correct_name.values
 	print correct_name
+
 	if 
-	correct_name[0] = username && correct_name[1] = password	
+	correct_name[0] == username && correct_name[1] == password	
     	case selection
         when 'new_first'
             db.exec("UPDATE phonebook SET first_name = '#{new_entry}' WHERE first_name = '#{old_entry}'");
@@ -92,9 +96,9 @@ post '/update' do
         when 'new_zip'
             db.exec("UPDATE phonebook SET zip_code = '#{new_entry}' WHERE zip_code = '#{old_entry}'");
         when 'new_phone'
-            db.exec("UPDATE phonebook SET phone_number = '#{new_entry}' WHERE phone_number = '#{old_entry}'");
-    	redirect '/phone_book?='
+            db.exec("UPDATE phonebook SET phone_number = '#{new_entry}' WHERE phone_number = '#{old_entry}'");  
     end
+    redirect '/phone_book?='
 	else
 	redirect '/phone_book?='
 end
@@ -108,14 +112,17 @@ post '/delete' do
 	correct_name = correct_user[0]
 	correct_name = correct_name.values
 	if 
-		correct_name[0] = username && correct_name[1] = password
+		correct_name[0] == username && correct_name[1] == password
 		db.exec("DELETE FROM phonebook WHERE phone_number = '#{deleted}'");
 		db.exec("DELETE FROM login_table WHERE phone_number = '#{deleted}'");
 	redirect '/phone_book?='
 	else
     redirect '/phone_book?='
 end
-end 
+end
+
+
+
 # username = "Bobman"
 # # password = "smith"
 # # confirm_user = db.exec("SELECT * FROM login_table WHERE username = '#{username}' AND password = '#{password}'");
